@@ -25,7 +25,9 @@ SECRET_KEY = 'b(2v$4)y4d&f-qham^bb*(-!fvy6qvepd*va9hqly!#uncpwn$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://secret-reaches-87420.herokuapp.com'
+]
 
 
 # Application definition
