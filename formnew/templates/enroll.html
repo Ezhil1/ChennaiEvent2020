@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div style="background-color:#FFFFFF">
+    <br>
+     <h2>Enroll your events</h2>
+     <br>
+    <form action='enroll' method = 'POST'>
+    {% csrf_token %}
+    <label>
+    <b>Name</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp<input type="text" name="name1" required><br>
+    <br>
+    <b>Email id</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="email" required><br>
+    <br>
+    <b>Phone number</b>&nbsp&nbsp&nbsp<input type="text" name="phn_no" required><br>
+    <br>
+    </label>
+    <br>
+    <label>
+       
+    <b>Select the  event:</b>
+    <input type="radio" name="event" required value="Football">Football &nbsp &nbsp
+    <input type="radio" name="event" required value="Volleyball">Volleyball &nbsp &nbsp
+    <input type="radio" name="event" required value="Throwball">Throwball&nbsp &nbsp
+    <br>
+    </label><br>
+    <br>
+    <label>  
+    <b>Time slot:</b>
+    <select name="Time_slot">
+    <option value=9am-11am>9am-11am</option>
+    <option value=12pm-2pm>12pm-2pm</option>
+    <option value=4pm-6pm>4pm-6pm</option>
+    </select>
+    <br>
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+    </div>
+    <div>
+    {% for message in messages  %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+    </div>
+{% endblock  %}

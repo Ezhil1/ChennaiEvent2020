@@ -1,0 +1,14 @@
+<form action='slot_info' method = 'POST'>
+    {% csrf_token %}
+    <label>
+    <b>Enrollement ID</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp<input type="number" name="id" required><br>
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+    
+    <a href="{% url 'home' %}"><button>Back</a></button>
+    <br>
+    <div>
+    {% for message in messages  %}
+    <h3>{{message}}</h3>
+    {% endfor %}
