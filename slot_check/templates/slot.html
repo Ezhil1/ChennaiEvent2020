@@ -1,7 +1,14 @@
+<style>
+    a { text-decoration: none;
+        color: black; 
+      }
+  </style><style>
+    a { text-decoration: none; }
+  </style>
 <form action='slot_info' method = 'POST'>
     {% csrf_token %}
     <label>
-    <b>Enrollement ID</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp<input type="number" name="id" required><br>
+    <b>Your Enrollment ID</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp<input type="number" name="id" required><br>
     <br>
     <br>
     <input type="submit" value="Submit">

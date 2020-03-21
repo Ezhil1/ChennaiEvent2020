@@ -3,6 +3,7 @@ from .models import register
 from .models import new_event
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def login(request):
@@ -11,18 +12,10 @@ def login(request):
         password = request.POST["password"]
         reg = register.objects.filter(name=username, password=password).first()
         if reg is not None:
-            request.session
-            return redirect('formnew:enroll')
+            return render(request, 'enroll.html', {'name': username})
         else:
+            messages.info(request, 'Account not found')
             return redirect('formnew:login')
-        # print("reg is ")
-        # print(reg)
-        # if reg is not None:
-        #   auth.login(request, reg)
-        #  print("user found")
-        # return redirect("/")
-        return render(request, 'register.html')
-
     else:
         return render(request, 'login.html')
 
@@ -57,7 +50,7 @@ def enroll(request):
         event = request.POST["event"]
         timeslot = request.POST["Time_slot"]
         if new_event.objects.filter(email=email_id):
-            messages.info(request, 'Email taken')
+            messages.info(request, 'This email ID already used for enrollment')
             return redirect('formnew:enroll')
         else:
             eve = new_event(name=name, email=email_id,

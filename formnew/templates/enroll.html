@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if name is not None %}
     <div style="background-color:#FFFFFF">
     <br>
      <h2>Enroll your events</h2>
      <br>
+     
     <form action='enroll' method = 'POST'>
     {% csrf_token %}
     <label>
@@ -38,7 +40,11 @@
     </div>
     <div>
     {% for message in messages  %}
-    <h3>{{message}}</h3>
+    <h40>{{message}}</h4>
     {% endfor %}
     </div>
+{% else %}
+        <p> Kindly login to enroll events<p>
+        <a href="{% url 'formnew:login' %}">Go to login page</a> &nbsp&nbsp&nbsp&nbsp
+{% endif %}
 {% endblock  %}
