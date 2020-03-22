@@ -4,6 +4,7 @@ app_name = "formnew"
 urlpatterns = [
     path('enroll', views.enroll, name="enroll"),
     path('login', views.login, name="login"),
+    path('logout', views.logout, name="logout"),
     path('register', views.registernew, name="registernew"),
     #path('form', views.form, name="form")
 ]

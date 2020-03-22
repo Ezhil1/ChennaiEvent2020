@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
-from .models import register
 from .models import new_event
 from django.contrib.auth.models import auth, User
+# from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -10,9 +10,13 @@ def login(request):
     if request.method == "POST":
         username = request.POST["name"]
         password = request.POST["password"]
-        reg = register.objects.filter(name=username, password=password).first()
-        if reg is not None:
-            return render(request, 'enroll.html', {'name': username})
+        # user = register.objects.filter(
+        #   name=username, password=password).first()
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('formnew:enroll')
+            # return render(request, 'enroll.html', {'name': username})
         else:
             messages.info(request, 'Account not found')
             return redirect('formnew:login')
@@ -27,9 +31,9 @@ def registernew(request):
         password = request.POST["password"]
         Confirm_password = request.POST["Confirm_password"]
         if password == Confirm_password:
-            reg = register(name=name, password=password,
-                           confirm_password=Confirm_password, mail_id=email_id)
-            reg.save()
+            user = User.objects.create_user(username=name, password=password,
+                                            email=email_id)
+            user.save()
             return redirect('formnew:login')
         else:
             messages.info(request, 'Password Does not match')
@@ -42,6 +46,7 @@ def form(request):
     return render(request, 'form.html')
 
 
+@login_required(login_url="home")
 def enroll(request):
     if request.method == 'POST':
         name = request.POST["name1"]
@@ -62,3 +67,10 @@ def enroll(request):
             return render(request, 'enroll_submit.html', {'name': name, 'id': id2})
     else:
         return render(request, 'enroll.html')
+
+
+@login_required(login_url="home")
+def logout(request):
+    name = request.user.username
+    auth.logout(request)
+    return render(request, "logout.html", {'name1': name})

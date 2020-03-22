@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-{% if name is not None %}
+{% comment %} {% if name is not None %} {% endcomment %}
     <div style="background-color:#FFFFFF">
     <br>
      <h2>Enroll your events</h2>
      <br>
-     
     <form action='enroll' method = 'POST'>
     {% csrf_token %}
     <label>
+    
     <b>Name</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp<input type="text" name="name1" required><br>
     <br>
     <b>Email id</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="email" required><br>
@@ -40,11 +40,11 @@
     </div>
     <div>
     {% for message in messages  %}
-    <h40>{{message}}</h4>
+    <h4>{{message}}</h4>
     {% endfor %}
     </div>
-{% else %}
-        <p> Kindly login to enroll events<p>
-        <a href="{% url 'formnew:login' %}">Go to login page</a> &nbsp&nbsp&nbsp&nbsp
-{% endif %}
+{% comment %} {% else %} {% endcomment %}
+        {% comment %} <p> Kindly login to enroll events<p> {% endcomment %}
+        {% comment %} <a href="{% url 'formnew:login' %}">Go to login page</a> &nbsp&nbsp&nbsp&nbsp {% endcomment %}
+{% comment %} {% endif %} {% endcomment %}
 {% endblock  %}

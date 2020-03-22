@@ -13,6 +13,9 @@
   <body>
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">Chennai Sports event 2020 </a>
+        {% if user.is_authenticated  %}
+          <h5>{{request.user.username}} <span style="font-weight:normal">  logged in</span></h5>
+        {% endif %}
     </nav>
     <main class="container">
     {% block content %}

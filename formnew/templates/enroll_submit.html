@@ -6,5 +6,8 @@
 
 <p>Your enrollment ID is <h1><b>{{id}}<b></h1><p>
 <button>
-<a href="{% url 'home' %}">Back to home page</a>
+<a href="{% url 'formnew:enroll' %}">Back</a>
+</button>
+<button>
+<a href="{% url 'formnew:logout' %}">Logout</a>
 </button>
